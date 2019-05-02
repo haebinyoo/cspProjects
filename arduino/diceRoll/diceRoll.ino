@@ -1,6 +1,7 @@
 void setup() {
   Serial.begin(115200);
   randomSeed(analogRead(0));
+  
 }
 
 void loop() {
@@ -13,7 +14,10 @@ void loop() {
   delay(1000);
 
   Serial.println("Roll Again?");
-  long command;
+  while (Serial.available () > 0) {
+  
+  }
+  String command;
   if (command == "Yes") {
     Serial.println(randNumber);
   }
