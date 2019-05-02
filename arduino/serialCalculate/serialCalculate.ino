@@ -4,6 +4,7 @@ int number2;
 int result;
 char integers[32];
 bool newData = false;
+bool readyToCalculate = false;
 
 void setup() {
   Serial.begin(9600);
@@ -11,11 +12,12 @@ void setup() {
 }
 
 void loop() {
-  cleanData1();
+  cleanData();
   parseData();
+  calculate();
 }
 
-void cleanData1() {
+void cleanData() {
   int count = 0;
   while (Serial.available() > 0) {
     newData = true;
@@ -24,10 +26,13 @@ void cleanData1() {
       count++;
       Serial.print("The current count is ");
       Serial.println(count);
+      delay(1);
+
     }
     else if (isGraph(Serial.peek()) == true) {
       sign = Serial.read();
       Serial.println(sign);
+      delay(1);
     }
     else {
       Serial.read();
@@ -43,5 +48,11 @@ void parseData() {
     Serial.println(number2);
     newData = false;
   }
-
+}
+void calculate() {
+  if (readyToCalculate == true) {
+    Serial.println("Calculating...");
+    
+    
+  }
 }
