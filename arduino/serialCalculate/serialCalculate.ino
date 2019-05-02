@@ -18,11 +18,19 @@ void loop() {
 void cleanData1() {
   int count = 0;
   while (Serial.available() > 0) {
-    char inbound = Serial.read();
-    if (isGraph(inbound)) {
-      newData = true;
-      integers[count] = inbound;
+    newData = true;
+    if (isDigit(Serial.peek()) == true) {
+      integers[count] = Serial.parseInt();
       count++;
+      Serial.print("The current count is ");
+      Serial.println(count);
+    }
+    else if (isGraph(Serial.peek()) == true) {
+      sign = Serial.read();
+      Serial.println(sign);
+    }
+    else {
+      Serial.read();
     }
   }
 }
