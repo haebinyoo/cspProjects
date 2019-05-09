@@ -5,6 +5,7 @@ int result;
 char integers[32];
 bool newData = false;
 bool readyToCalculate = false;
+bool readyToPrint = false;
 
 void setup() {
   Serial.begin(9600);
@@ -52,7 +53,32 @@ void parseData() {
 void calculate() {
   if (readyToCalculate == true) {
     Serial.println("Calculating...");
-    
-    
+    switch (sign) {
+      case '+':
+        result = number1 + number2;
+        readyToPrint = true;
+        Serial.print("Addition");
+        break;
+      case '-':
+        result = number1 - number2;
+        readyToPrint = true;
+        Serial.print("Substraction");
+        break;
+      case '*':
+        result = number1 * number2;
+        readyToPrint = true;
+        Serial.print("Multiplication");
+        break;
+      case '/':
+        result = number1 / number2;
+        readyToPrint = true;
+        Serial.print("Division");
+        break;
+      default:
+        Serial.println("This operation is not supported. Please try again.");
+        readyToPrint = false;
+        break;
+        bool readyToCalculate = false;
+    }
   }
 }
