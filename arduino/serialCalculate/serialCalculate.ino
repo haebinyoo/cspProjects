@@ -16,6 +16,7 @@ void loop() {
   cleanData();
   parseData();
   calculate();
+  concatenateResultsAndPrint();
 }
 
 void cleanData() {
@@ -78,7 +79,15 @@ void calculate() {
         Serial.println("This operation is not supported. Please try again.");
         readyToPrint = false;
         break;
-        bool readyToCalculate = false;
     }
+  }
+  readyToCalculate = false;
+}
+
+void concatenateResultsAndPrint() {
+  if (readyToPrint == true) {
+    String printCalculation = String(number1) + ' ' + String(sign) + ' ' + String(number2) + String(" = ") + String(result);
+    Serial.println(printCalculation);
+    readyToPrint = false;
   }
 }
