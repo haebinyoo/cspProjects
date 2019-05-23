@@ -9,7 +9,6 @@ bool readyToPrint = false;
 
 void setup() {
   Serial.begin(9600);
-
 }
 
 void loop() {
@@ -49,6 +48,7 @@ void parseData() {
     Serial.println(sign);
     Serial.println(number2);
     newData = false;
+    readyToCalculate = true; 
   }
 }
 void calculate() {
@@ -80,8 +80,9 @@ void calculate() {
         readyToPrint = false;
         break;
     }
+    readyToCalculate = false;
+    readyToPrint = true;
   }
-  readyToCalculate = false;
 }
 
 void concatenateResultsAndPrint() {
